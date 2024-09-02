@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # a simple script, to be run daily, to track the roster composition of NFL teams
 # throughout the 2024 season, especially at QB.
 
@@ -48,7 +50,7 @@ qb_number_by_team <- rosters |>
   filter(positon == "QB") |>
   group_by(team) |>
   summarize(qb_count = n()) |>
-  mutate(date = date)
+  mutate(date = as.character(date))
 
 # connect to the DB
 db <- dbConnect(SQLite(), "data/sqlite/qbs_on_the_53.sqlite")
